@@ -1,0 +1,13 @@
+import java.util.concurrent.ThreadLocalRandom;
+
+public class humedad extends sensor {
+
+    public humedad() {
+        super("Humedad", "%", 600, 5, 50.0, 80.0);
+    }
+
+    @Override
+    public double medir() {
+        return ThreadLocalRandom.current().nextDouble(40.0, 90.0);
+    }
+}
