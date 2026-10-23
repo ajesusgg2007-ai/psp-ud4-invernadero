@@ -18,6 +18,7 @@ public class Main {
         hiloTemp.start();
         hiloHumedad.start();
         hiloLuz.start();
+        riego.start();
 
         try {
             hiloTemp.join();
@@ -32,7 +33,7 @@ public class Main {
         long tiempo = fin - inicio;
 
 
-        System.out.println("\n=== INFORME FINAL CONCURRENTE ===");
+        System.out.println("\n");
         System.out.println(temp.informe());
         System.out.println(humedad.informe());
         System.out.println(luz.informe());

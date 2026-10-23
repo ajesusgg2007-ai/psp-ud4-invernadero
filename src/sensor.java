@@ -71,32 +71,32 @@ public abstract class sensor implements Runnable {
 
     @Override
     public void run(){
-        for(int i = 0; i<numLecturas; i++){
+        for(int i = 0; i < numLecturas; i++){
             double valor = medir();
-            numLecturas++;
-            sumaValores+=valor;
 
-            System.out.println("Hilo: "+Thread.currentThread().getName());
+            totalLecturas++;   // Incrementamos las lecturas hechas correctamente
+            sumaValores += valor;
 
-            if (valor < umbralMin||valor > umbralMax)
-            {
-                System.out.println("ALERTA: "+nombre+ " fuera de Rango");
-                numLecturas++;
+            System.out.println("Hilo: " + Thread.currentThread().getName() + " | Valor: " + valor);
+
+            if (valor < umbralMin || valor > umbralMax) {
+                System.out.println("ALERTA: " + getNombre() + " fuera de Rango (" + valor + ")");
+                numAlertas++;  // Incrementamos correctamente el contador de alertas
             }
 
             try {
-                Thread.sleep(periodo);
-            }catch (InterruptedException e){
+                Thread.sleep(getPeriodo());
+            } catch (InterruptedException e) {
+                System.out.println(getNombre() + " interrumpido.");
                 return;
             }
         }
-
     }
-    public String informe(){
-        double media= totalLecturas>0?sumaValores/totalLecturas:0;
+    public String informe() {
+        double media = totalLecturas > 0 ? sumaValores / totalLecturas : 0;
         return "Sensor " + nombre + ": Lecturas: " + totalLecturas +
                 "Media: " + String.format("%.2f", media) + " " + unidad +
                 "Mín: " + umbralMin + "Máx: " + umbralMax +
                 "Alertas: " + numAlertas;
     }
-}
+        }
