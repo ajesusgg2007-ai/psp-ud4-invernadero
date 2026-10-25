@@ -1,3 +1,25 @@
+## Qué hace
+Este proyecto simula un sistema de control automatizado para un invernadero utilizando programación multihilo en Java. El sistema gestiona de forma concurrente tres tipos de sensores Temperatura, Humedad y Luminosidad que realizan lecturas periódicas, detectan valores fuera de rango (alertas) y un sistema de control de riego programadorRiego que abre y cierra válvulas acumulando los litros regados. El proyecto evoluciona desde un modelo secuencial hasta
+un control avanzado de hilos, monitorización y estados.
+
+## Cómo ejecutarlo
+El proyecto está dividido en clases ejecutables independientes para cada fase:
+* **Fase 1**: Ejecutar Fase1_Secuencial para ver el modelo bloqueante en el hilo principal.
+* **Fase 2**: Ejecutar Fase2_Concurrente para ver la ejecución en paralelo usando Thread, .start() y .join().
+* **Fase 3**: Ejecutar Fase3_Experimentos para comprobar el comportamiento práctico de los hilos.
+* **Fase 4**: Ejecutar Fase4_Vigilante para monitorizar en tiempo real el ciclo de vida de los hilos con un hilo de supervisión Daemon.
+
+FASE 2:
+
+**Captura:**
+
+![img_1.png](img_1.png)
+
+| Fase | Modelo de Ejecución              | Tiempo Total Aprox. |
+| :--- |:---------------------------------|:--------------------|
+| **Fase 1** | Secuencial    | 11188 ms            |
+| **Fase 2** | Concurrente  | 3500 ms             |
+
 Fase 3: Experimentos
 
 Experimento A:
@@ -59,8 +81,10 @@ Sale java.lang.IllegalThreadStateException
 El ciclo de vida de un hilo es de un solo uso. Una vez que un hilo alcanza el estado TERMINATED, no se puede reanimar
 ni reiniciar llamando de nuevo a .start().
 
-FASE 4:
+* ¿Por qué los sensores solo pueden ser Runnable en tu diseño?
 
-NEW: Al crear los objetos Thread antes de llamar a  start(). 
-RUNNABLE  TIMED_WAITING: Mientras están ejecutando sus mediciones activas o durmiendo en los Thread.sleep() intermedios.TERMINATED: Una vez que el bucle de
-cada sensor o riego termina por completo y llama a join().
+Porque la clase base sensor define una estructura de negocio y comparte atributos comunes. Al usar Runnable, se mantiene una arquitectura limpia y orientada a objetos, permitiendo que cualquier tipo de sensor se ejecute en un hilo sin tener que forzar una jerarquía de herencia compleja con `Thread`.
+
+* ¿Qué forma elegirías para el riego y por qué?
+
+Para el programadorRiego, se decidió heredar directamente de Thread porque actúa como un componente autónomo y muy específico del sistema. Tiene un ciclo de vida claro y limitado, lo que facilita su creación directa tal como exige el diseño de la práctica.
