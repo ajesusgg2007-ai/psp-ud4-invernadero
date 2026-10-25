@@ -63,4 +63,4 @@ FASE 4:
 
 NEW: Al crear los objetos Thread antes de llamar a  start(). 
 RUNNABLE  TIMED_WAITING: Mientras están ejecutando sus mediciones activas o durmiendo en los Thread.sleep() intermedios.TERMINATED: Una vez que el bucle de
-cada sensor o riego termina por completo y llama a join()
+cada sensor o riego termina por completo y llama a join().
