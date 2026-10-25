@@ -24,3 +24,4 @@ public class Fase1_secuencial {
         System.out.println("\nTiempo total transcurrido: " + tiempo + " ms");
     }
 }
+

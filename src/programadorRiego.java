@@ -7,6 +7,11 @@ public programadorRiego(){
     super("riego");
 }
 
+    public programadorRiego(int ciclos) {
+        super("riego");
+        this.ciclos = ciclos;
+    }
+
 @Override
     public void run(){
     for (int i=1; i <=ciclos; i++)
