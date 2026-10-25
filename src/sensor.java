@@ -97,6 +97,6 @@ public abstract class sensor implements Runnable {
         return "Sensor " + nombre + ": Lecturas: " + totalLecturas +
                 "Media: " + String.format("%.2f", media) + " " + unidad +
                 "Mín: " + umbralMin + "Máx: " + umbralMax +
-                "Alertas: " + numAlertas;
+                " Alertas: " + numAlertas;
     }
         }

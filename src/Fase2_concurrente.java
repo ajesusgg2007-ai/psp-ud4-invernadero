@@ -1,5 +1,5 @@
 
-public class Main {
+public class Fase2_concurrente {
     public static void main(String[] args) {
 
         sensor temp=new temperatura();
@@ -42,3 +42,4 @@ public class Main {
         System.out.println("\nTiempo total transcurrido: " + tiempo + " ms");
         }
     }
+

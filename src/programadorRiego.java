@@ -39,6 +39,6 @@ public programadorRiego(){
 }
 
     public String informe() {
-        return "Riego -> Ciclos realizados: " + ciclos + " | Litros totales regados: " + litros + "L";
+        return "Riego Ciclos realizados: " + ciclos + " | Litros totales regados: " + litros + "L";
     }
 }
